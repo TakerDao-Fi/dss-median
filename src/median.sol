@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 /// median.sol
 
 // Copyright (C) 2017-2020 Maker Ecosystem Growth Holdings, INC.
@@ -15,7 +17,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-pragma solidity >=0.5.10;
+pragma solidity >=0.6.12;
 
 contract LibNote {
     event LogNote(
@@ -59,7 +61,7 @@ contract Median is LibNote {
 
     uint128        val;
     uint32  public age;
-    bytes32 public constant wat = "ethusd"; // You want to change this every deploy
+    bytes32 public wat = "ethusd"; // You want to change this every deploy
     uint256 public bar = 1;
 
     // Authorized oracles, set by an auth
@@ -89,7 +91,7 @@ contract Median is LibNote {
         return (val, val > 0);
     }
 
-    function recover(uint256 val_, uint256 age_, uint8 v, bytes32 r, bytes32 s) internal pure returns (address) {
+    function recover(uint256 val_, uint256 age_, uint8 v, bytes32 r, bytes32 s) internal virtual view returns (address) {
         return ecrecover(
             keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", keccak256(abi.encodePacked(val_, age_, wat)))),
             v, r, s
