@@ -24,7 +24,7 @@ contract MedianTest is DSTest {
     UnauthorizedPeek u;
 
     function setUp() public {
-        m = new Median();
+        m = new Median("ethusd");
         u = new UnauthorizedPeek(m);
     }
 

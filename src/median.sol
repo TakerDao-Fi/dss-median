@@ -61,7 +61,7 @@ contract Median is LibNote {
 
     uint128        val;
     uint32  public age;
-    bytes32 public wat = "ethusd"; // You want to change this every deploy
+    bytes32 public wat;
     uint256 public bar = 1;
 
     // Authorized oracles, set by an auth
@@ -78,7 +78,8 @@ contract Median is LibNote {
     event LogMedianPrice(uint256 val, uint256 age);
 
     //Set type of Oracle
-    constructor() public {
+    constructor(bytes32 _wat) public {
+        wat = _wat;
         wards[msg.sender] = 1;
     }
 
